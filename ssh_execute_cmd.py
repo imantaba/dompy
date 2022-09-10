@@ -18,8 +18,11 @@ ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 
 ssh.connect(hostname=host, username='ubuntu', key_filename='/home/ubuntu/keys/avid/pubnito-nightly.pem')
 
-stdin, stdout, stderr = ssh.exec_command('sudo apt update')
-print(stdout.readlines())
+stdin, stdout, stderr = ssh.exec_command('date')
+
+
+output = str(stdout.readlines())
+print(output.split(' ')[3])
 # The reason for the error (AttributeError: 'NoneType' object has no attribute 'time') is that the output print conflicts with the close executed by the program. You only need to add a time before the close Sleep (1) is OK
 time.sleep(1)
 ssh.close()
