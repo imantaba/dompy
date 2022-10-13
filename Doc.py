@@ -107,7 +107,9 @@ ValueError: invalid literal for int() with base 10: 'four'
 
 Using Python’s enumerate() :
 **************************
-# You can use enumerate() in a loop in almost the same way that you use the original iterable object. Instead of putting the iterable directly after in in the for loop, you put it inside the parentheses of enumerate(). You also have to change the loop variable a little bit, as shown in this example:
+# You can use enumerate() in a loop in almost the same way that you use the original iterable object. 
+# Instead of putting the iterable directly after in in the for loop, you put it inside the parentheses of enumerate(). 
+# You also have to change the loop variable a little bit, as shown in this example:
 
 >>> for count, value in enumerate(values):
 ...     print(count, value)

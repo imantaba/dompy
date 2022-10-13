@@ -50,6 +50,7 @@ class _TreeGenerator:
     def build_tree(self):
         self._tree_head()
         self._tree_body(self._root_dir)
+        print(self._tree)
         return self._tree
 
     def _tree_head(self):
@@ -58,11 +59,13 @@ class _TreeGenerator:
 
     def _tree_body(self, directory, prefix=""):
         entries = directory.iterdir()
+        print(directory)
         entries = sorted(entries, key=lambda entry: entry.is_file())
         entries_count = len(entries)
         for index, entry in enumerate(entries):
             connector = ELBOW if index == entries_count - 1 else TEE
             if entry.is_dir():
+                # here we pass entry as directory to _add_directory function so directory changed every time
                 self._add_directory(
                     entry, index, entries_count, prefix, connector
                 )
@@ -77,6 +80,7 @@ class _TreeGenerator:
             prefix += PIPE_PREFIX
         else:
             prefix += SPACE_PREFIX
+        
         self._tree_body(
             directory=directory,
             prefix=prefix,
@@ -86,5 +90,5 @@ class _TreeGenerator:
     def _add_file(self, file, prefix, connector):
         self._tree.append(f"{prefix}{connector} {file.name}")
 
-tree = DirectoryTree("/home/ubuntu/aws")
+tree = DirectoryTree("/home/ubuntu/test")
 tree.generate()
