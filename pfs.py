@@ -2,7 +2,8 @@ files = [
     "/webapp/assets/html/a.html",
     "/webapp/assets/html/b.html",
     "/webapp/assets/js/c.js",
-    "/webapp/index.html"
+    "/webapp/index.html",
+    "/.gitignore"
 ]
 
 # -- webapp
@@ -32,12 +33,23 @@ class _StructureGenerator:
         self._tree = []
     
     def build_tree(self):
+        dic = {}
         paths = self._files
         for path in paths:
+            list_count = len(path.split('/'))
+            prefix = ""
             for index, entry in enumerate(path.split('/')):
-              print("#####")
-              print(index, entry)
+                if index != 0:
+                    prefix += DUBLE_SPACE
+                    if (index, entry) in dic.items():
+                        continue
+                    if index != list_count - 1:
+                        dic[index] = entry
+                    if index == 1:
+                        prefix=""
+                    self._tree.append(f"{prefix}{DUBLE_DASH}{entry}")
         return self._tree
+    
 
 a = FileStructure(files)
 a.generate()
