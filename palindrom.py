@@ -26,8 +26,10 @@ class _Calculate:
         for char in string:
             new_str = string.replace(char, '')
             if new_str[:pal_char_count] == new_str[:pal_char_count:-1]:
-                return True  
+                return True
+            else:
+                return False
 
-s = "racercar"
+s = "adbc"
 a = IsPalindrome(s)
 a.showResult()
