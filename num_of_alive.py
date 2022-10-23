@@ -6,3 +6,8 @@
 
 list = [[2000,2005],[1990,2005],[2005,2010],[1980,1995]]
 
+for items in list:
+    for i in range(items[0], items[1]):
+        print(i)
+    print("##################")
+        
