@@ -1,3 +1,5 @@
+# Question : Get an string and return True if it is palindrom with removing one character
+
 # ````
 #     tacocats -> True
 #     racercar -> True
