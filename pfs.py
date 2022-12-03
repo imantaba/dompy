@@ -1,10 +1,4 @@
-files = [
-    "/webapp/assets/html/a.html",
-    "/webapp/assets/html/b.html",
-    "/webapp/assets/js/c.js",
-    "/webapp/index.html",
-    "/.gitignore"
-]
+# Question  :  get a list of files and show struture as below
 
 # -- webapp
 #   -- assets
@@ -14,6 +8,16 @@ files = [
 #     -- js
 #       -- c.js
 #   -- index.html
+
+files = [
+    "/webapp/assets/html/a.html",
+    "/webapp/assets/html/b.html",
+    "/webapp/assets/js/c.js",
+    "/webapp/index.html",
+    "/.gitignore"
+]
+
+
 
 DUBLE_SPACE = "  "
 DUBLE_DASH = "-- "
