@@ -16,9 +16,11 @@ import boto3
 
 s3 = boto3.client('s3')
 bucket_name="social-nightly"
-response = s3.list_objects_v2(Bucket=bucket_name)
-files = response.get("Contents")
-for file in files:
-    key = file['Key']
-    if key.startswith("0Gor"):
-        print(key)
+objects = s3.list_objects_v2(Bucket=bucket_name)
+
+
+for obj in objects['Contents']:
+    last = obj['Key'].rsplit('/', 1)[-1]
+    if last.startswith("gjf"):
+        print(last)
+
