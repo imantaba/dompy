@@ -14,13 +14,17 @@ import boto3
 # s3 = boto3.resource('s3')
 # s3.Bucket(BUCKET_NAME).download_file(KEY, 'my-local-image.png')
 
-s3 = boto3.client('s3')
-bucket_name="social-nightly"
-objects = s3.list_objects_v2(Bucket=bucket_name)
+# s3 = boto3.client('s3')
+# bucket_name="social-nightly"
+# objects = s3.list_objects_v2(Bucket=bucket_name)
+# for obj in objects['Contents']:
+#     last = obj['Key'].rsplit('/', 1)[-1]
+#     if last.startswith("gjf"):
+#         print(last)
 
 
-for obj in objects['Contents']:
-    last = obj['Key'].rsplit('/', 1)[-1]
-    if last.startswith("gjf"):
-        print(last)
-
+s3 = boto3.resource('s3')
+bucket = s3.Bucket('social-nightly')
+for obj in bucket.objects.all():
+    if not obj.key.endswith('/'): # exclude folders
+        print(obj.key)
