@@ -1,5 +1,6 @@
 
 # validate an email with regex and comment each line 
+### at the end of the line press ctrl+shift+i
 
 import re  # import regex library
 
