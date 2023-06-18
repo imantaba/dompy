@@ -1,3 +1,54 @@
+with function :
+**************
+In Python, the `with` statement is used for handling context managers, which are objects that define a `__enter__()` and `__exit__()` method. These methods are used to set up and tear down a context for a block of code, respectively. The `with` statement allows you to easily work with resources that need to be acquired and released around a block of code, such as file handles, sockets, or database connections. It helps to simplify the code, reduce the chance of bugs, and improve the readability.
+
+The main usage of the `with` statement is to ensure that the resource is properly acquired and released, while handling exceptions correctly.
+
+Here is an example of how to use `with` when working with a file:
+
+```python
+with open('file.txt', 'r') as file:
+    data = file.read()
+    # Do something with data
+
+# file is automatically closed after this block, even if an exception occurs
+```
+
+In this example, the `open()` function returns a file object, which is a context manager. When the `with` statement is executed, the `__enter__()` method is called, which opens the file. After the block of code indented under the `with` statement is executed, the `__exit__()` method is called, which closes the file. The file will be closed even if an exception occurs within the block, ensuring that resources are not leaked and the file is closed properly.
+
+You can also use multiple context managers in one `with` statement:
+
+```python
+with open('input.txt', 'r') as input_file, open('output.txt', 'w') as output_file:
+    # Do operations with input_file and output_file
+    # Both files will be properly closed after the block.
+
+Continuing with another example, let's use `with` in conjunction with a database connection to commit or rollback transactions:
+
+Suppose we have a method `get_database_connection()` returning a connection object (which is a context manager) to interact with a database. We can use the `with` statement to make sure the connection is properly closed and the transaction is either committed or rolled back, depending on whether an exception occurs.
+
+```python
+def add_record_to_database(record):
+    with get_database_connection() as connection:
+        cursor = connection.cursor()
+        try:
+            # Perform database operations using cursor
+            cursor.execute("INSERT INTO my_table (field1, field2) VALUES (?, ?)", (record.field1, record.field2))
+            # commit() will be called when exiting the 'with' block if no exception was raised. 
+        except Exception as e:
+            # rollback() will be called when exiting the 'with' block if an exception was raised.
+            print("Error inserting record:", e)
+            raise
+```
+
+In this example, `get_database_connection()` provides a connection object which has `__enter__()` and `__exit__()` methods for managing database transactions. The `__enter__()` method starts a new transaction, and the `__exit__()` method either commits the transaction if the block of code executed successfully or rolls back the transaction if an exception occurred.
+
+By using the `with` statement, we can ensure that the database connection is properly handled, and the correct transaction management is applied, without having to manually call commit() or rollback() in every possible code path. This simplifies the code, reduces the chance of bugs, and improves readability.
+
+
+
+
+
 Composition:
 ***********
 # Classes that contain objects of other classes are usually referred to as composites, where classes that are used to create more 
