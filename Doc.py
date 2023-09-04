@@ -199,3 +199,13 @@ a
 
 # In this example, you pass start=1, which starts count with the value 1 on the first loop iteration. Compare this with the previous 
 # examples, in which start had the default value of 0, and see whether you can spot the difference.
+
+
+
+
+virtaalenv :
+***********
+
+virtualenv -p python3 .venv
+source .venv/bin/activate
+deactivate
